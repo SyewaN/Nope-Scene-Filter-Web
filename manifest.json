@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Nope Scene Filter Web",
+  "short_name": "NSFW",
+  "version": "1.1.0",
+  "description": "Skip, mute, blur, or speed through sensitive scenes in streaming videos.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://www.omdbapi.com/*",
+    "https://raw.githubusercontent.com/*",
+    "https://cdn.jsdelivr.net/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_title": "Nope Scene Filter Web",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["segmentManager.js", "uiOverlay.js", "detector.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["segments.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

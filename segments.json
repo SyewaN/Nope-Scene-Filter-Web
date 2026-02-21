@@ -1,0 +1,36 @@
+[
+  {
+    "id": "tt0137523",
+    "segments": [
+      { "start": 120, "end": 180, "type": "sexual" },
+      { "start": 300, "end": 360, "type": "nudity" }
+    ]
+  },
+  {
+    "id": "tt0133093",
+    "segments": [
+      { "start": 410, "end": 455, "type": "nudity" },
+      { "start": 580, "end": 610, "type": "sexual" }
+    ]
+  },
+  {
+    "id": "tt0816692",
+    "segments": [
+      { "start": 960, "end": 1020, "type": "nudity" }
+    ]
+  },
+  {
+    "id": "tt15398776",
+    "segments": [
+      { "start": 3090, "end": 3195, "type": "nudity" },
+      { "start": 4320, "end": 4380, "type": "sexual" }
+    ]
+  },
+  {
+    "id": "tt1630029",
+    "segments": [
+      { "start": 1560, "end": 1590, "type": "nudity" },
+      { "start": 1680, "end": 1710, "type": "sexual" }
+    ]
+  }
+]

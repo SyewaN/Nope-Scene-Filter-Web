@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nope Scene Filter Web</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup-header">
+        <div>
+          <h1>Nope Scene Filter Web</h1>
+          <p class="subhead">NSFW</p>
+        </div>
+        <div class="header-controls">
+          <select id="languageSelect" class="lang-select">
+            <option value="tr">TR</option>
+            <option value="en">EN</option>
+          </select>
+          <label class="toggle-row" for="enabledToggle">
+            <span class="toggle-label" data-i18n="enabled">Enabled</span>
+            <span class="toggle-switch">
+              <input id="enabledToggle" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </span>
+          </label>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="card-head">
+          <h2 data-i18n="movie_select">Select Movie</h2>
+          <button id="detectButton" type="button" class="ghost" data-i18n="detect_page">Detect Page</button>
+        </div>
+        <p id="detectInfo" class="hint">Auto-detect uses page URL and title.</p>
+        <form id="searchForm" class="row">
+          <input id="searchInput" type="text" placeholder="Search title" autocomplete="off" />
+          <button type="submit" data-i18n="search">Search</button>
+        </form>
+        <ul id="results" class="results"></ul>
+        <p id="selectedMovie" class="selected">No movie selected</p>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="filter_modes">Filter Modes</h2>
+        <div class="setting-grid">
+          <div class="setting">
+            <label for="actionSexual" data-i18n="sexual">Sexual</label>
+            <select id="actionSexual">
+              <option value="skip">Skip</option>
+              <option value="smart">Smart Fade</option>
+              <option value="blur">Blur</option>
+              <option value="mute">Mute</option>
+              <option value="speed">Speed-up 3x</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+          <div class="setting">
+            <label for="actionNudity" data-i18n="nudity">Nudity</label>
+            <select id="actionNudity">
+              <option value="skip">Skip</option>
+              <option value="smart">Smart Fade</option>
+              <option value="blur">Blur</option>
+              <option value="mute">Mute</option>
+              <option value="speed">Speed-up 3x</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+          <div class="setting"><label for="adaptiveModeToggle">Adaptive</label><input id="adaptiveModeToggle" type="checkbox" /></div>
+          <div class="setting"><label for="audioOnlyModeToggle">Audio-only</label><input id="audioOnlyModeToggle" type="checkbox" /></div>
+        <div class="setting"><label for="safeModeSelect">Safe Mode</label>
+          <select id="safeModeSelect">
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="LIGHT">LIGHT</option>
+            <option value="STRICT">STRICT</option>
+            <option value="OFF">OFF</option>
+          </select>
+        </div>
+          <div class="setting"><label for="confidenceThresholdInput">Confidence</label><input id="confidenceThresholdInput" type="number" min="0" max="100" step="1" /></div>
+          <div class="setting"><label for="previewToggle">Skip Preview</label><input id="previewToggle" type="checkbox" /></div>
+          <div class="setting"><label for="autoSkipDelayInput">Auto Delay</label><input id="autoSkipDelayInput" type="number" min="0" max="10" step="1" /></div>
+          <div class="setting"><label for="debugModeToggle">Show Marks</label><input id="debugModeToggle" type="checkbox" /></div>
+          <div class="setting"><label for="communitySyncToggle">Community Sync</label><input id="communitySyncToggle" type="checkbox" /></div>
+          <div class="setting"><label for="metadataLookupToggle">IMDb Tag</label><input id="metadataLookupToggle" type="checkbox" /></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="segments">Segments</h2>
+        <p id="segmentMeta" class="selected">No segment data loaded</p>
+        <ul id="segmentList" class="segment-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="manual_marking">Manual Marking</h2>
+        <div class="row compact">
+          <input id="segmentStart" type="number" min="0" step="0.1" placeholder="Start (sec)" />
+          <button id="setStartNow" type="button" data-i18n="mark_start">Mark Start</button>
+        </div>
+        <div class="row compact">
+          <input id="segmentEnd" type="number" min="0" step="0.1" placeholder="End (sec)" />
+          <button id="setEndNow" type="button" data-i18n="mark_end">Mark End</button>
+        </div>
+        <div class="row compact">
+          <select id="contribType">
+            <option value="sexual">Sexual</option>
+            <option value="nudity">Nudity</option>
+          </select>
+          <button id="addSegmentButton" type="button" data-i18n="add_local">Add Local</button>
+        </div>
+      </section>
+
+      <section class="card split">
+        <div>
+          <h2 data-i18n="local_db">Local DB</h2>
+          <div class="row compact">
+            <button id="exportLocalDbButton" type="button">Export JSON</button>
+            <button id="importLocalDbButton" type="button">Import JSON</button>
+            <input id="importLocalDbFile" type="file" accept="application/json,.json" hidden />
+          </div>
+          <div class="setting">
+            <label for="mergeStrategySelect">Merge</label>
+            <select id="mergeStrategySelect">
+              <option value="prefer-existing">Keep existing</option>
+              <option value="prefer-imported">Prefer imported</option>
+              <option value="keep-both">Keep both</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <h2>GitHub</h2>
+          <div class="row compact">
+            <button id="openRepoButton" type="button">Open Repo</button>
+            <button id="copyMovieJsonButton" type="button">Copy Movie JSON</button>
+          </div>
+        </div>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
